@@ -1,0 +1,3 @@
+[submodule "Hardware-Dimensions"]
+	path = Hardware-Dimensions
+	url = git@github.com:ParametricCSG/Hardware-Dimensions.git
