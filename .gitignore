@@ -1,3 +1,4 @@
+*.scad
 *.py[cod]
 
 # C extensions
