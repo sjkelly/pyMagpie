@@ -5,7 +5,7 @@ import magpie.utility
 
 class TimingBelt(component.Element):
 
-    def __init__(self, size="GT2", width=0, make = True):
+    def __init__(self, size="GT2", width=0):
         component.Element.__init__(self, name="timingbelt")
         self.size = size
         self.width = width
@@ -13,10 +13,9 @@ class TimingBelt(component.Element):
         self.toothHeight = 0
         self.pitch = 0
         magpie.utility.get_dimensions(size = size, name = "timingBelt", obj = self)
-        if make:
-            self.location = [0, 0, 0]
-            self.color = [0.5, 0.5, 0.5]
-            self.construction = self._construction()
+        self.location = [0, 0, 0]
+        self.color = [0.5, 0.5, 0.5]
+        self.construction = self._construction()
 
     def _construction(self):
         pass

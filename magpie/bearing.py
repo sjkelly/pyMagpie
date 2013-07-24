@@ -5,17 +5,16 @@ import magpie.utility
 
 class BallBearing(component.Element):
 
-    def __init__(self, size="608zz", make = True):
+    def __init__(self, size="608zz"):
         component.Element.__init__(self, name="ballbearing")
         self.size = size
         self.innerDiameter = 0
         self.outerDiameter = 0
         self.width = 0
         magpie.utility.get_dimensions(size = size, name = "ballBearing", obj = self)
-        if make:
-            self.location = [0, 0, 0]
-            self.color = [0.5, 0.5, 0.5]
-            self.construction = self._construction()
+        self.location = [0, 0, 0]
+        self.color = [0.5, 0.5, 0.5]
+        self.construction = self._construction()
 
     def _construction(self):
         outer = element.Cylinder(radius=self.outerDiameter/2, height=self.width)
@@ -25,20 +24,19 @@ class BallBearing(component.Element):
 
 class LinearBallBearing(element.Primitive):
 
-    def __init__(self, size="LM8UU", make = True, negative=False):
+    def __init__(self, size="LM8UU", negative=False):
         element.Primitive.__init__(self, name="linearballbearing")
         self.size = size
         self.innerDiameter = 0
         self.outerDiameter = 0
         self.length = 0
         magpie.utility.get_dimensions(size = size, name = "linearBallBearing", obj = self)
-        if make:
-            self.location = [0, 0, 0]
-            self.color = [0.5, 0.5, 0.5]
-            if not negative:
-                self.construction = self.positiveConstruction()
-            else:
-                self.construction = self.negativeConstruction()
+        self.location = [0, 0, 0]
+        self.color = [0.5, 0.5, 0.5]
+        if not negative:
+            self.construction = self.positiveConstruction()
+        else:
+            self.construction = self.negativeConstruction()
 
     def positiveConstruction(self):
         outer = element.Cylinder(radius=self.outerDiameter/2, height=self.length)

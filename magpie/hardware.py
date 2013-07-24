@@ -2,9 +2,15 @@
 from textcad import *
 import magpie.utility
 
+class Hardware(component.Element):
+    def __init__(self, name):
+        component.Element.__init__(self, name = name)
+    def size_from_diameter():
+        pass
+
 class CapScrew(component.Element):
 
-    def __init__(self, size="M3", length=10, make = True):
+    def __init__(self, size="M3", length=10):
         component.Element.__init__(self, name="capscrew")
         self.size = size
         self.length = length
@@ -14,10 +20,9 @@ class CapScrew(component.Element):
         self.keySize = 0
         self.keyDepth = 0
         magpie.utility.get_dimensions(size = size, name = "capScrew", obj = self)
-        if make:
-            self.location = [0, 0, 0]
-            self.color = [0.5, 0.5, 0.5]
-            self.construction = self._construction()
+        self.location = [0, 0, 0]
+        self.color = [0.5, 0.5, 0.5]
+        self.construction = self._construction()
 
     def _construction(self):
         head = element.Cylinder(radius=self.headDiameter/2,
@@ -31,17 +36,16 @@ class CapScrew(component.Element):
 
 class Nut(component.Element):
 
-    def __init__(self, size="M3", make = True):
+    def __init__(self, size="M3"):
         component.Element.__init__(self, name="nut")
         self.size = size
         self.height = 0
         self.width = 0
         self.diameter = 0
         magpie.utility.get_dimensions(size = size, name = "nut", obj = self)
-        if make:
-            self.location = [0, 0, 0]
-            self.color = [0.5, 0.5, 0.5]
-            self.construction = self._construction()
+        self.location = [0, 0, 0]
+        self.color = [0.5, 0.5, 0.5]
+        self.construction = self._construction()
 
     def _construction(self):
         hexagon = element.Ntube(sides = 6, apothem = self.width/2, height = self.height)
@@ -51,7 +55,7 @@ class Nut(component.Element):
 
 class LockNut(component.Element):
 
-    def __init__(self, size="M3", make = True):
+    def __init__(self, size="M3"):
         component.Element.__init__(self, name="locknut")
         self.size = size
         self.height = 0
@@ -59,10 +63,9 @@ class LockNut(component.Element):
         self.width = 0
         self.diameter = 0
         magpie.utility.get_dimensions(size = size, name = "lockNut", obj = self)
-        if make:
-            self.location = [0, 0, 0]
-            self.color = [0.5, 0.5, 0.5]
-            self.construction = self._construction()
+        self.location = [0, 0, 0]
+        self.color = [0.5, 0.5, 0.5]
+        self.construction = self._construction()
 
     def _construction(self):
         wrenchSection = element.Ntube(sides=6, apothem=self.width/2, height=self.wrenchingHeight)
@@ -72,6 +75,7 @@ class LockNut(component.Element):
         return wrenchSection + bevel - hole
 
 if __name__=="__main__":
+    import subprocess
     utility.export(CapScrew(size="M3", length=10), "capscrew.json")
     utility.export(Nut(size="M3"), "nut.json")
     utility.export(LockNut(size="M3"), "locknut.json")
