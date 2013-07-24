@@ -5,9 +5,10 @@ import magpie.utility
 
 class TimingBelt(component.Element):
 
-    def __init__(self, size="GT2", make = True):
+    def __init__(self, size="GT2", width=0, make = True):
         component.Element.__init__(self, name="timingbelt")
         self.size = size
+        self.width = width
         self.height = 0
         self.toothHeight = 0
         self.pitch = 0
